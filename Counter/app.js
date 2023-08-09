@@ -4,13 +4,17 @@ const incrementInput = document.querySelector('input');
 let count = 0;
 let increment = 1;
 
-console.log(btns);
-
 const incrementNumberUpdate = () => {
-    if(incrementInput.value === 0 ){
+    let regex = /^[0-9]*$/;
+    if (!incrementInput.value.match(regex))
+    {
+        alert("Must input numbers");
+    }
+    else if(incrementInput.value == 0 ){
         increment = 1;
     }
-    increment = incrementInput.value;
+    else{    increment = incrementInput.value * 1;
+    }
 }
 
 incrementInput.addEventListener('input',incrementNumberUpdate);
@@ -23,6 +27,8 @@ btns.forEach(btn => {
         }
         else if(styles.contains('reset')){
             count = 0;
+            increment = 1;
+            incrementInput.value = '';
         }
         else if(styles.contains('increase')){
             count = count + increment;
